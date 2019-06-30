@@ -1,0 +1,51 @@
+---
+---
+<!DOCTYPE html>
+<html>
+  {% include head.html %}
+  <body itemscope itemtype="http://schema.org/Article">
+    {% include header.html %}
+
+
+
+
+    <main class="content" role="main">
+
+      <article class="post" itemscope itemtype="http://schema.org/BlogPosting" role="article">
+        <div class="article-item">
+          <header class="post-header">
+            <h1 class="post-title" itemprop="name"><a href="{{ post.url | prepend: site.baseurl }}" itemprop="url">{{ page.title }}</a></h1>
+            <div class="post-meta">
+              <span class="author-name" itemprop="author" itemscope itemtype="http://schema.org/Person"> By {{ page.author }} on</span>
+              <time datetime="{{ post.date | date_to_long_string }}">{{ page.date | date_to_long_string }}.</time>
+              <br>
+              <span> Categories:  </span>
+              {% for category in page.categories %}
+                <span class="tags-index"> <a href="/categories/{{ category }}"> {{ category }} </a></span>
+              {% endfor %}
+            </div>
+
+          </header>
+          <hr>
+
+          {% if page.toc %}
+          <h1> Table of Contents </h1>
+          {{ content | toc }}
+          {% endif %}
+
+          <section class="post-content">
+            <a name="topofpage"></a>
+            {{content}}
+          </section>
+          <div class="post-meta">
+
+          </div>
+
+        </div>
+      </article>
+
+    </main>
+    {% include footer.html %}
+    {% include javascripts.html %}
+  </body>
+</html>
